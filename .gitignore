@@ -1,0 +1,4 @@
+# Ignora tudo, exceto o quiz
+*
+!index.html
+!.gitignore
