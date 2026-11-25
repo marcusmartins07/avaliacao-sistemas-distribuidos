@@ -202,6 +202,19 @@
     .qty button{width:auto;}
     .start-row{flex-direction:column;align-items:stretch;}
   }
+  /* revisao das questoes erradas */
+  .review{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    border:1px solid var(--err);background:rgba(196,87,74,.07);border-radius:8px;padding:12px 14px;margin-top:14px;}
+  .review .msg{font-size:13px;color:var(--text);}
+  .review .msg b{color:var(--err);}
+  .review .acts{display:flex;gap:8px;}
+  button.clear{color:var(--muted);}
+  .end .actions{flex-wrap:wrap;}
+  .end .saved{font-size:12px;margin-top:-14px;}
+  @media (max-width: 600px){
+    .review .acts{width:100%;flex-direction:column;}
+    .end .actions{flex-direction:column;}
+  }
   @media (prefers-reduced-motion: reduce){
     .cursor{animation:none;}
     .opt,.seg i{transition:none;}
@@ -2399,6 +2412,50 @@ let order = [];      // ordem embaralhada das perguntas (indices em DATA)
 let current = 0;
 let score = 0;
 let answered = false;
+let mode = 'normal';  // 'normal' ou 'review' (refazendo as erradas)
+let roundWrong = [];  // indices (em DATA) errados na rodada atual
+
+// ---- memoria de erros ----
+// Fica no localStorage do navegador: cada pessoa/navegador que abre a pagina
+// tem a sua propria lista. A chave e o texto da pergunta (estavel mesmo se a
+// ordem de DATA mudar). Acertar a questao depois a remove da lista.
+const WRONG_KEY = 'sd-quiz:erros:v1';
+let wrongMem = {};    // copia em memoria (usada se o localStorage estiver bloqueado)
+
+function loadWrong(){
+  try{
+    const raw = localStorage.getItem(WRONG_KEY);
+    const obj = raw ? JSON.parse(raw) : {};
+    wrongMem = obj && typeof obj === 'object' ? obj : {};
+  }catch(e){ /* sem storage: segue com a copia em memoria */ }
+  return wrongMem;
+}
+function saveWrong(obj){
+  wrongMem = obj;
+  try{ localStorage.setItem(WRONG_KEY, JSON.stringify(obj)); }catch(e){}
+}
+function markWrong(q){
+  const w = loadWrong();
+  const prev = w[q.question];
+  w[q.question] = { count: (prev ? prev.count : 0) + 1, last: Date.now() };
+  saveWrong(w);
+}
+function markRight(q){
+  const w = loadWrong();
+  if(w[q.question]){ delete w[q.question]; saveWrong(w); }
+}
+function clearWrong(){ saveWrong({}); }
+// indices em DATA das questoes erradas salvas (sem repetir a mesma pergunta)
+function wrongPool(){
+  const w = loadWrong();
+  const seen = new Set();
+  return DATA.map((q, i) => i).filter(i => {
+    const t = DATA[i].question;
+    if(!w[t] || seen.has(t)) return false;
+    seen.add(t);
+    return true;
+  });
+}
 
 // configuracao da rodada (tela inicial)
 const TOPICS = [...new Set(DATA.map(q => q.topic))];
@@ -2453,6 +2510,31 @@ function renderStart(){
   h.className = 'q';
   h.textContent = 'Escolha os temas e a quantidade de questões';
   quizArea.appendChild(h);
+
+  // questoes erradas salvas neste navegador
+  const pending = wrongPool();
+  if(pending.length){
+    const box = document.createElement('div');
+    box.className = 'review';
+    const n = pending.length;
+    box.innerHTML = `<span class="msg">Você tem <b>${n}</b> ${n === 1 ? 'questão errada salva' : 'questões erradas salvas'}.</span>`;
+    const acts = document.createElement('div');
+    acts.className = 'acts';
+    const redo = document.createElement('button');
+    redo.className = 'go';
+    redo.textContent = 'refazer erradas →';
+    redo.addEventListener('click', () => startReview(wrongPool()));
+    const clr = document.createElement('button');
+    clr.className = 'clear';
+    clr.textContent = 'limpar';
+    clr.addEventListener('click', () => {
+      if(confirm('Apagar a lista de questões erradas salvas?')){ clearWrong(); renderStart(); }
+    });
+    acts.appendChild(redo);
+    acts.appendChild(clr);
+    box.appendChild(acts);
+    quizArea.appendChild(box);
+  }
 
   const lblT = document.createElement('p');
   lblT.className = 'setup-label';
@@ -2548,7 +2630,19 @@ function buildProgress(){
 
 function startQuiz(){
   const shuffled = shuffle(selectedPool());
-  order = selectedQty === 'todas' ? shuffled : shuffled.slice(0, Math.min(selectedQty, shuffled.length));
+  startRound(selectedQty === 'todas' ? shuffled : shuffled.slice(0, Math.min(selectedQty, shuffled.length)), 'normal');
+}
+
+// rodada so com questoes erradas (todas as salvas, ou as da ultima rodada)
+function startReview(indices){
+  if(!indices.length) return;
+  startRound(shuffle(indices), 'review');
+}
+
+function startRound(indices, m){
+  mode = m;
+  order = indices;
+  roundWrong = [];
   current = 0;
   score = 0;
   scoreTotal.textContent = order.length;
@@ -2561,7 +2655,7 @@ function renderQuestion(){
   answered = false;
   nextBtn.classList.remove('show');
   const q = DATA[order[current]];
-  topicEl.textContent = q.from ? `${q.topic} · ${q.from}` : q.topic;
+  topicEl.textContent = (mode === 'review' ? 'Revisão · ' : '') + (q.from ? `${q.topic} · ${q.from}` : q.topic);
   buildProgress();
   scoreVal.textContent = score;
   qNum.textContent = current + 1;
@@ -2615,7 +2709,13 @@ function selectOption(li, origLetter, q){
     }
   });
 
-  if(isCorrect) score++;
+  if(isCorrect){
+    score++;
+    markRight(q);
+  } else {
+    roundWrong.push(order[current]);
+    markWrong(q);
+  }
   scoreVal.textContent = score;
 
   const fb = document.getElementById('feedback');
@@ -2640,18 +2740,32 @@ function renderEnd(){
   buildProgress();
   document.querySelectorAll('.seg').forEach(s => s.classList.add('done'));
   const pct = Math.round((score / order.length) * 100);
+  const missed = roundWrong.slice();
+  const saved = wrongPool().length;
+  const savedMsg = saved === 0
+    ? 'Nenhuma questão errada pendente.'
+    : `${saved} ${saved === 1 ? 'questão errada salva' : 'questões erradas salvas'} para revisão.`;
   quizArea.innerHTML = `
     <div class="end">
-      <p class="prompt">Quiz finalizado<span class="cursor"></span></p>
+      <p class="prompt">${mode === 'review' ? 'Revisão finalizada' : 'Quiz finalizado'}<span class="cursor"></span></p>
       <div class="big">${score}/${order.length}</div>
       <p>${pct}% de acerto</p>
+      <p class="saved">${savedMsg}</p>
       <div class="actions">
-        <button id="restartBtn">refazer</button>
+        ${missed.length ? `<button id="redoWrongBtn" class="go">refazer erradas (${missed.length})</button>` : ''}
+        <button id="restartBtn">${mode === 'review' ? 'refazer revisão' : 'nova rodada'}</button>
         <button id="menuBtn">menu</button>
       </div>
     </div>
   `;
-  document.getElementById('restartBtn').addEventListener('click', startQuiz);
+  const prevOrder = order.slice();
+  const prevMode = mode;
+  if(missed.length){
+    document.getElementById('redoWrongBtn').addEventListener('click', () => startReview(missed));
+  }
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    if(prevMode === 'review') startReview(prevOrder); else startQuiz();
+  });
   document.getElementById('menuBtn').addEventListener('click', renderStart);
 }
 
