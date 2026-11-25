@@ -1986,6 +1986,414 @@ const DATA = [
   }
 ]
 
+// ---- 50 questões mais fáceis (cópias de questões dos outros temas, conteúdos misturados) ----
+// Tema desmarcado por padrão; as questões repetem as dos demais temas.
+const EASY_TOPIC = "50 Mais Fáceis";
+const EASY = [
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "Por que a descentralização é considerada uma característica-chave dos sistemas distribuídos?",
+    options: { A: "Porque dispensa a troca de mensagens entre os componentes do sistema", B: "Porque garante que todos os nós possuam exatamente o mesmo hardware", C: "Porque elimina o ponto único de falha, mantendo o sistema funcionando", D: "Porque torna a distribuição visível, facilitando a depuração pelo usuário", E: "Porque concentra o controle em um nó, simplificando a aplicação da segurança" },
+    answer: "C",
+    explain: "A descentralização elimina o ponto único de falha, permitindo que o sistema continue funcionando mesmo com a falha de um componente."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "Qual é o objetivo da característica Transparência em um SD?",
+    options: { A: "Integrar sistemas de fornecedores diferentes por meio de padrões abertos", B: "Expor a localização dos recursos para que o usuário otimize o próprio acesso", C: "Permitir que vários processos executem simultaneamente compartilhando recursos", D: "Permitir que o sistema cresça em usuários sem perda significativa de desempenho", E: "Simplicidade para o usuário, com a complexidade gerenciada pelo sistema" },
+    answer: "E",
+    explain: "A transparência oculta a natureza distribuída do sistema. O objetivo citado é: simplicidade para o usuário, complexidade gerenciada pelo sistema."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "Um serviço precisa funcionar eficientemente para usuários espalhados em continentes diferentes. Qual dimensão de escalabilidade está em foco?",
+    options: { A: "Administrativa", B: "Abertura", C: "Recuperabilidade", D: "Geográfica", E: "De tamanho" },
+    answer: "D",
+    explain: "A escalabilidade geográfica é a capacidade de funcionar eficientemente em grandes distâncias."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "A analogia do hub USB (aceita diferentes dispositivos, mas com o mesmo padrão de comunicação) ilustra qual característica dos SDs?",
+    options: { A: "Concorrência", B: "Escalabilidade", C: "Transparência", D: "Abertura", E: "Confiabilidade" },
+    answer: "D",
+    explain: "Abertura é a capacidade de ser estendido e integrado a outros sistemas através de padrões bem definidos, como o hub USB."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "O aspecto da Confiabilidade que permite “operação parcial em caso de falhas” é:",
+    options: { A: "Tolerância a falhas", B: "Segurança", C: "Transparência", D: "Disponibilidade", E: "Recuperabilidade" },
+    answer: "A",
+    explain: "Tolerância a falhas = o sistema continua operando parcialmente mesmo com componentes falhando."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "No cenário prático do serviço de streaming, “se um servidor cai, outro assume automaticamente” exemplifica:",
+    options: { A: "Concorrência", B: "Abertura", C: "Confiabilidade", D: "Escalabilidade", E: "Transparência" },
+    answer: "C",
+    explain: "No exemplo do streaming, a troca automática de servidor em caso de falha ilustra a Confiabilidade."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "No cenário do serviço de streaming, “o usuário não sabe em qual servidor está o filme” exemplifica:",
+    options: { A: "Recuperabilidade", B: "Abertura", C: "Transparência", D: "Concorrência", E: "Escalabilidade" },
+    answer: "C",
+    explain: "Ocultar a localização do recurso, escondendo a natureza distribuída, é Transparência."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "No cenário do streaming, qual característica é exemplificada por “milhões assistindo simultaneamente”, segundo o material?",
+    options: { A: "Abertura", B: "Escalabilidade", C: "Transparência", D: "Concorrência", E: "Confiabilidade" },
+    answer: "B",
+    explain: "O slide associa “milhões assistindo simultaneamente” à Escalabilidade; “múltiplas requisições processadas juntas” é que foi associado à Concorrência."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "Onde se posiciona o middleware em um sistema distribuído?",
+    options: { A: "Apenas no servidor central, nunca nas máquinas clientes", B: "Entre as aplicações do usuário e o sistema operacional", C: "Dentro do kernel, substituindo os drivers de rede de cada máquina", D: "Abaixo do sistema operacional, controlando diretamente o hardware", E: "Na camada física da rede, junto aos cabos e roteadores" },
+    answer: "B",
+    explain: "O middleware (intermediário) fica entre as aplicações do usuário e o sistema operacional, gerenciando a comunicação entre componentes."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Introdução a SDs",
+    question: "A característica que permite que os usuários interajam com o SD como se fosse um sistema centralizado único é:",
+    options: { A: "Descentralização", B: "Abertura", C: "Transparência", D: "Escalabilidade", E: "Concorrência" },
+    answer: "C",
+    explain: "A transparência faz o sistema esconder sua natureza distribuída, parecendo um sistema centralizado único."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Um laboratório interliga 32 PCs idênticos, com Linux, em uma rede local rápida para executar programas paralelos intensivos em computação. Trata-se de:",
+    options: { A: "Computação de Cluster", B: "Sistema de informação distribuído", C: "Sistema pervasivo doméstico", D: "Rede de sensores distribuída", E: "Computação em Grade" },
+    answer: "A",
+    explain: "Máquinas homogêneas, mesmo SO e rede local de alta velocidade caracterizam um cluster."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Universidades de vários países compartilham seus recursos computacionais, com SOs, redes e políticas de segurança diferentes, para um projeto científico conjunto. Trata-se de:",
+    options: { A: "Monitor de transações (TP)", B: "Computação em Grade (Grid)", C: "Sistema de saúde eletrônico", D: "Arquitetura centralizada", E: "Computação de Cluster Beowulf" },
+    answer: "B",
+    explain: "Recursos heterogêneos, geograficamente distribuídos e de múltiplas instituições caracterizam a computação em grade."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Por que os clusters representam uma alternativa de baixo custo aos supercomputadores?",
+    options: { A: "Porque não precisam de nenhuma rede local", B: "Porque usam apenas um nó de computação", C: "Porque usam recursos de várias instituições", D: "Porque utilizam hardware comum “de prateleira”", E: "Porque dispensam o uso de sistema operacional" },
+    answer: "D",
+    explain: "Clusters usam hardware comum de prateleira, sendo uma alternativa barata aos supercomputadores tradicionais."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Em uma transferência bancária, o débito foi realizado mas o crédito falhou; por isso toda a operação é desfeita. Qual propriedade ACID garante isso?",
+    options: { A: "Atomicidade", B: "Durabilidade", C: "Isolamento", D: "Disponibilidade", E: "Consistência" },
+    answer: "A",
+    explain: "Atomicidade = tudo ou nada: a transação é uma unidade indivisível; ou todas as operações ocorrem, ou nenhuma."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Após a confirmação de uma transação, o servidor sofre uma queda de energia, mas os dados gravados permanecem. Qual propriedade ACID está sendo garantida?",
+    options: { A: "Consistência", B: "Recuperabilidade", C: "Isolamento", D: "Durabilidade", E: "Atomicidade" },
+    answer: "D",
+    explain: "Durabilidade: permanência dos dados mesmo após falhas."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Qual protocolo de EAI permite que um programa chame uma função em outra máquina como se fosse uma chamada local, sem foco em orientação a objetos?",
+    options: { A: "RMI", B: "JRMP", C: "RPC", D: "NTP", E: "MOM" },
+    answer: "C",
+    explain: "RPC (Remote Procedure Call) chama procedimentos/funções remotos como se fossem locais. O RMI é a evolução orientada a objetos do RPC."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Qual vantagem do MOM (Message-Oriented Middleware) é chamada de desacoplamento temporal?",
+    options: { A: "As aplicações não precisam estar ativas ao mesmo tempo para se comunicar", B: "A comunicação inicial usa sempre a porta 1099 e depois uma porta aleatória", C: "Os relógios das máquinas são sincronizados por servidores NTP", D: "As mensagens são sempre entregues na mesma ordem em que foram publicadas", E: "O cliente fica bloqueado até a resposta do servidor chegar pela rede" },
+    answer: "A",
+    explain: "O MOM usa comunicação assíncrona por mensagens; as aplicações não precisam estar ativas ao mesmo tempo — isso é o desacoplamento temporal."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Que problema os sistemas recomendadores surgiram para resolver?",
+    options: { A: "O excesso de conteúdo disponível para o usuário", B: "A falta de segurança nas redes sem fio domésticas", C: "A falta de conectividade dos dispositivos domésticos", D: "A ausência de um relógio global entre os aparelhos", E: "O alto custo dos supercomputadores científicos" },
+    answer: "A",
+    explain: "Surgiram para lidar com o excesso de conteúdo, analisando preferências e comportamento do usuário para sugerir itens relevantes."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "Nos sistemas de saúde eletrônicos, o que são as BANs?",
+    options: { A: "Bancos de dados hospitalares com controle transacional ACID", B: "Clusters Beowulf dedicados à análise de exames médicos", C: "Bibliotecas de execução paralela para dados clínicos", D: "Barramentos de eventos publish/subscribe entre hospitais", E: "Redes de sensores sem fio leves dispostos no corpo do usuário" },
+    answer: "E",
+    explain: "BAN = Body Area Network (Rede de Área Corporal), formada por sensores sem fio leves e móveis no corpo do usuário."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Tipos de SDs",
+    question: "O software AgroSMART é citado como exemplo de:",
+    options: { A: "SD pervasivo com sensores no campo", B: "monitor de transações (TP)", C: "computação em grade científica", D: "sistema de saúde eletrônico", E: "middleware publish/subscribe" },
+    answer: "A",
+    explain: "O AgroSMART é um exemplo de SD pervasivo: monitoramento climático e sensores de solo para dados do campo."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "O que o RMI permite, essencialmente?",
+    options: { A: "Que mensagens sejam guardadas e entregues a aplicações que estavam inativas", B: "Que uma aplicação Java chame funções de qualquer linguagem sem configuração extra", C: "Que uma thread acesse diretamente a memória de outro processo da mesma máquina", D: "Que uma transação grande seja dividida em subtransações executadas em paralelo", E: "Que um objeto em uma JVM invoque métodos de um objeto em outra JVM remota" },
+    answer: "E",
+    explain: "O RMI permite que um objeto em uma JVM invoque métodos de um objeto localizado em outra JVM remota, abstraindo a comunicação."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Quais componentes de baixo nível intermediam a comunicação entre cliente e objeto remoto no RMI?",
+    options: { A: "Monitor TP e Broker", B: "Stub e Skeleton", C: "Nó mestre e nós de computação", D: "Publisher e Subscriber", E: "Mutex e Lock" },
+    answer: "B",
+    explain: "Stub (lado cliente) e Skeleton (lado servidor) intermediam a comunicação entre o cliente e o objeto remoto."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "O RMI Registry é:",
+    options: { A: "um escalonador da JVM que decide qual thread atende cada chamada remota", B: "o protocolo de rede usado pelo RMI para transportar os dados serializados", C: "um banco de dados que persiste o estado de todos os objetos remotos do servidor", D: "um serviço de nomes para registro e descoberta de objetos remotos", E: "o componente do lado servidor que faz o unmarshalling dos parâmetros recebidos" },
+    answer: "D",
+    explain: "O RMI Registry é o serviço de nomes para registro e descoberta dos objetos remotos, parte da infraestrutura do Java RMI."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "No RMI, o processo de marshalling, realizado pelo Stub, consiste em:",
+    options: { A: "desserializar os parâmetros recebidos pela rede", B: "gerar os Stubs e Skeletons com a ferramenta rmic", C: "registrar o objeto remoto por nome no Registry", D: "executar o método no objeto remoto do servidor", E: "serializar os parâmetros da chamada para a rede" },
+    answer: "E",
+    explain: "Marshalling (organização) é a serialização dos parâmetros da chamada para envio pela rede, feita pelo Stub."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Qual componente faz o unmarshalling dos parâmetros recebidos, invoca o método no objeto remoto e serializa o retorno?",
+    options: { A: "Skeleton", B: "RMI Registry", C: "Stub", D: "JRMP", E: "Cliente" },
+    answer: "A",
+    explain: "O Skeleton, no lado do servidor, desserializa (unmarshalling), invoca o método no objeto remoto e serializa o valor de retorno ou a exceção."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Qual das alternativas é uma DESVANTAGEM do RMI?",
+    options: { A: "Tipagem forte nas chamadas aos métodos remotos", B: "Integração nativa com a orientação a objetos", C: "Serialização dinâmica de objetos complexos pela rede", D: "Abstração dos protocolos de rede de baixo nível", E: "Cliente bloqueado e ocioso aguardando a resposta" },
+    answer: "E",
+    explain: "As desvantagens são: restrição ao ecossistema Java, comunicação síncrona (cliente bloqueado) e incompatibilidade com firewalls."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Qual é a porta padrão usada pelo RMI para a comunicação primária (lookup)?",
+    options: { A: "3306", B: "8080", C: "443", D: "1099", E: "80" },
+    answer: "D",
+    explain: "A 1099 é a porta padrão do RMI Registry para o lookup."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Por que a desvantagem “restrito ao ecossistema Java” é relevante?",
+    options: { A: "Porque integrar com outras linguagens é complexo", B: "Porque o RMI não aceita objetos como parâmetro", C: "Porque o Java não oferece suporte à serialização", D: "Porque o RMI não funciona entre duas JVMs diferentes", E: "Porque o RMI só funciona em sistemas Linux" },
+    answer: "A",
+    explain: "Por ser nativo do Java, integrar o RMI com outras linguagens é complexo."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Um cliente chama “depositar(100)” remotamente, recebe uma exceção de timeout e reenvia a chamada, mas o servidor já havia executado a primeira. Que propriedade deveria ter sido projetada para evitar o depósito em dobro?",
+    options: { A: "Serialização dinâmica", B: "Escalabilidade", C: "Transparência de rede", D: "Idempotência", E: "Atomicidade" },
+    answer: "D",
+    explain: "Operações idempotentes garantem que o reenvio de uma requisição interrompida não gere inconsistências ou efeitos duplicados no servidor."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Java RMI",
+    question: "Qual é o primeiro passo na implementação de uma aplicação RMI?",
+    options: { A: "Executar o cliente e o servidor", B: "Escrever o código da aplicação cliente", C: "Iniciar o RMI Registry na porta 1099", D: "Gerar o Skeleton com a ferramenta rmic", E: "Definir a interface remota" },
+    answer: "E",
+    explain: "O primeiro passo é definir a interface remota com os métodos disponibilizados para a rede."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "Um diagrama mostra que o serviço de autenticação roda no servidor S1 e o banco de dados no servidor S2. Esse diagrama representa qual aspecto da arquitetura?",
+    options: { A: "Centrado em dados", B: "Em camadas", C: "Físico", D: "Orientado a eventos", E: "Lógico" },
+    answer: "C",
+    explain: "Descrever onde os componentes são executados (quais máquinas) é a arquitetura física."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "A arquitetura MVC (Model-View-Controller), com apresentação, regras de negócio e acesso a dados, é citada como exemplo de qual estilo?",
+    options: { A: "Em camadas", B: "Baseado em objetos", C: "Centrado em dados", D: "Orientado a eventos", E: "Peer-to-peer" },
+    answer: "A",
+    explain: "O MVC é o exemplo dado para a arquitetura em camadas."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "O Java RMI é citado como exemplo de qual estilo arquitetural?",
+    options: { A: "Arquitetura em camadas (MVC)", B: "Arquitetura orientada a eventos", C: "Arquitetura centrada em dados", D: "Arquitetura baseada em objetos", E: "Arquitetura descentralizada P2P" },
+    answer: "D",
+    explain: "A invocação remota de métodos (RMI) é o exemplo da arquitetura baseada em objetos."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "Na arquitetura orientada a eventos, o que é um evento?",
+    options: { A: "Uma chamada síncrona a um método de um objeto remoto", B: "Uma das camadas da arquitetura Model-View-Controller", C: "Uma interrupção gerada pelo relógio de hardware", D: "A ocorrência de algo relevante, como “pedido criado”", E: "Um registro gravado no banco de dados compartilhado" },
+    answer: "D",
+    explain: "Um evento representa a ocorrência de algo relevante: pedido criado, pagamento recebido, login/logout etc."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "No exemplo de publish/subscribe, a aplicação de vendas publica “pedido criado”. O que faz o broker (corretor)?",
+    options: { A: "Descarta a mensagem se algum dos assinantes estiver ocupado", B: "Distribui a mesma mensagem a todos os assinantes interessados", C: "Processa o pagamento diretamente, sem envolver outros serviços", D: "Consolida as respostas e devolve o resultado à aplicação de vendas", E: "Entrega a mensagem somente ao primeiro assinante disponível no momento" },
+    answer: "B",
+    explain: "O broker (barramento de eventos) distribui a mesma mensagem a todos os assinantes interessados (pagamento, estoque, fraude), que podem publicar suas deliberações em outros canais."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "Um componente central recebe muitas solicitações simultâneas e passa a limitar o desempenho do conjunto. Esse problema é chamado de:",
+    options: { A: "Ponto único de falha", B: "Race condition", C: "Desacoplamento temporal", D: "Gargalo", E: "Deadlock" },
+    answer: "D",
+    explain: "Gargalo é uma parte do sistema que limita o desempenho do conjunto, comum em componentes centrais sobrecarregados."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "Se o componente central deixa de funcionar e não há outro capaz de assumir suas funções, o sistema fica indisponível. Esse problema é chamado de:",
+    options: { A: "Latência", B: "Deadlock", C: "Condição de corrida", D: "Gargalo", E: "Ponto único de falha" },
+    answer: "E",
+    explain: "Ponto único de falha: uma única falha pode comprometer parte significativa (ou todo) o sistema."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "O que caracteriza as redes P2P (peer-to-peer)?",
+    options: { A: "Todos os nós funcionam apenas como terminais sem processamento", B: "Um servidor central atende todos os recursos solicitados pelos nós", C: "Cada participante pode ser cliente e servidor ao mesmo tempo", D: "A comunicação é sempre mediada por um broker de eventos", E: "Só existem em clusters homogêneos com o mesmo sistema operacional" },
+    answer: "C",
+    explain: "Em P2P os participantes são cliente e servidor ao mesmo tempo, compartilhando recursos (ex.: BitTorrent, Blockchain)."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "Uma plataforma de distribuição de conteúdo tem um componente central para gerenciar usuários, autenticação e organização do conteúdo, e servidores distribuídos que fornecem os arquivos. Qual arquitetura é essa?",
+    options: { A: "Centralizada", B: "Descentralizada P2P", C: "Híbrida", D: "Centrada em dados", E: "Em camadas" },
+    answer: "C",
+    explain: "Arquitetura híbrida: funções de maior controle centralizadas (usuários/autenticação) e funções de distribuição (arquivos) distribuídas."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Arquitetura de SDs",
+    question: "Como os microsserviços são definidos no material?",
+    options: { A: "Threads leves criadas dentro de um mesmo processo da aplicação", B: "Uma aplicação monolítica única executada em um só servidor central", C: "Pequenos serviços relativamente independentes, cada um com uma capacidade", D: "As três camadas do padrão MVC executando em máquinas separadas", E: "Um tipo de rede de sensores de baixo consumo para dados ambientais" },
+    answer: "C",
+    explain: "Microsserviços: pequenos serviços relativamente independentes, cada um responsável por uma capacidade (usuários, produtos, pedidos, pagamentos)."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "A arquitetura básica de processador apresentada no material, datada de 1945, é a arquitetura de:",
+    options: { A: "Von Neumann", B: "Amdahl", C: "Harvard modificada", D: "Flynn", E: "Moore" },
+    answer: "A",
+    explain: "O material apresenta a Arquitetura de Von Neumann (1945) como arquitetura básica de um processador."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Qual é a diferença entre programa e processo?",
+    options: { A: "O programa é uma thread; o processo é o núcleo que executa essa thread", B: "Não há diferença: programa e processo são sinônimos para o sistema operacional", C: "O programa é passivo (instruções); o processo é sua instância em execução", D: "O processo é o código-fonte; o programa é o binário gerado pelo compilador", E: "O programa é uma entidade ativa; o processo é a entidade passiva armazenada" },
+    answer: "C",
+    explain: "O programa é passivo (instruções armazenadas); o processo é uma instância em execução."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Um processo está aguardando a conclusão de uma leitura em disco. Em qual estado básico ele se encontra?",
+    options: { A: "Executando", B: "Pronto", C: "Novo", D: "Finalizado", E: "Bloqueado" },
+    answer: "E",
+    explain: "Bloqueado: aguarda uma operação de E/S ou outro evento. Pronto: aguarda a CPU. Executando: instruções sendo executadas."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Um processo tem tudo de que precisa para executar, mas aguarda a disponibilidade de uma CPU. Em qual estado ele está?",
+    options: { A: "Bloqueado", B: "Pronto", C: "Finalizado", D: "Novo", E: "Executando" },
+    answer: "B",
+    explain: "No estado Pronto, o processo aguarda a disponibilidade de uma CPU."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Qual é a definição de thread apresentada?",
+    options: { A: "A menor unidade de execução escalonável, executada dentro de um processo", B: "Um processo independente, com espaço de memória totalmente isolado", C: "Um programa armazenado em disco que ainda não foi carregado na memória", D: "Um objeto remoto registrado no RMI Registry para acesso pela rede", E: "Um núcleo físico do processador capaz de executar instruções" },
+    answer: "A",
+    explain: "Thread é a menor unidade de execução escalonável; para Tanenbaum, uma sequência de instruções executada de forma independente dentro de um processo."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Qual método deve ser invocado para iniciar uma nova linha de execução que executará o método run()?",
+    options: { A: "join()", B: "lock()", C: "run()", D: "execute()", E: "start()" },
+    answer: "E",
+    explain: "start() inicializa a nova thread, que então executa run(). Chamar run() diretamente apenas executa o método na thread atual."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Qual método faz a thread que o invoca aguardar a conclusão da thread referenciada?",
+    options: { A: "join()", B: "tryLock()", C: "yield()", D: "start()", E: "sleep()" },
+    answer: "A",
+    explain: "join() faz a thread chamadora aguardar a conclusão da thread referenciada; resolve o problema da impressão antecipada."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Uma thread foi criada com new Thread(r), mas start() ainda não foi invocado. Em qual estado ela está?",
+    options: { A: "BLOCKED", B: "RUNNABLE", C: "TERMINATED", D: "NEW", E: "WAITING" },
+    answer: "D",
+    explain: "NEW: a thread foi instanciada, mas ainda não está em execução (start() não foi invocado)."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "O que é um deadlock (impasse)?",
+    options: { A: "Encerramento abrupto de uma thread por uma exceção não tratada", B: "Resultado incorreto que depende da ordem de execução das threads", C: "Uso de um quantum muito curto, causando chaveamentos excessivos", D: "Várias threads lendo o mesmo dado ao mesmo tempo sem alterá-lo", E: "Espera circular: cada thread aguarda um recurso retido por outra" },
+    answer: "E",
+    explain: "Deadlock é a espera circular: cada thread aguarda um recurso mantido por outra; nenhuma prossegue."
+  },
+  {
+    topic: EASY_TOPIC,
+    from: "Processos e Threads",
+    question: "Duas threads incrementam um contador compartilhado e o resultado final às vezes é menor que o esperado; o programa, porém, sempre termina. Qual problema é esse?",
+    options: { A: "Preempção", B: "Race condition", C: "Deadlock", D: "Inanição (starvation)", E: "Ponto único de falha" },
+    answer: "B",
+    explain: "Resultado inconsistente dependente da ordem de execução, sem travamento, é race condition. No deadlock, as threads ficariam travadas."
+  }
+];
+DATA.push(...EASY);
+
+
 // ---- estado ----
 let order = [];      // ordem embaralhada das perguntas (indices em DATA)
 let current = 0;
@@ -1995,7 +2403,8 @@ let answered = false;
 // configuracao da rodada (tela inicial)
 const TOPICS = [...new Set(DATA.map(q => q.topic))];
 const QTY_OPTIONS = [10, 20, 30, 'todas'];
-let selectedTopics = new Set(TOPICS);
+// o tema "50 Mais Fáceis" repete questões dos outros temas, por isso vem desmarcado
+let selectedTopics = new Set(TOPICS.filter(t => t !== EASY_TOPIC));
 let selectedQty = 10;
 
 const topicEl = document.getElementById('topic');
@@ -2017,8 +2426,20 @@ function shuffle(arr){
   return a;
 }
 
+// indices das questoes dos temas selecionados, sem repetir a mesma pergunta
+// (as do tema "50 Mais Fáceis" sao copias das dos outros temas)
+function selectedPool(){
+  const seen = new Set();
+  return DATA.map((q, i) => i).filter(i => {
+    const q = DATA[i];
+    if(!selectedTopics.has(q.topic) || seen.has(q.question)) return false;
+    seen.add(q.question);
+    return true;
+  });
+}
+
 function availableCount(){
-  return DATA.filter(q => selectedTopics.has(q.topic)).length;
+  return selectedPool().length;
 }
 
 // ---- tela inicial: escolha de temas e quantidade ----
@@ -2046,7 +2467,8 @@ function renderStart(){
     const paint = () => {
       const on = selectedTopics.has(t);
       li.className = 'opt' + (on ? ' selected' : '');
-      li.innerHTML = `<span class="k">${on ? '■' : '□'}</span><span>${t}</span><span class="count">${n} questões</span>`;
+      const note = t === EASY_TOPIC ? ' <small>(conteúdos misturados · repete questões dos outros temas)</small>' : '';
+      li.innerHTML = `<span class="k">${on ? '■' : '□'}</span><span>${t}${note}</span><span class="count">${n} questões</span>`;
     };
     paint();
     li.addEventListener('click', () => {
@@ -2125,8 +2547,7 @@ function buildProgress(){
 }
 
 function startQuiz(){
-  const pool = DATA.map((q, i) => i).filter(i => selectedTopics.has(DATA[i].topic));
-  const shuffled = shuffle(pool);
+  const shuffled = shuffle(selectedPool());
   order = selectedQty === 'todas' ? shuffled : shuffled.slice(0, Math.min(selectedQty, shuffled.length));
   current = 0;
   score = 0;
@@ -2140,7 +2561,7 @@ function renderQuestion(){
   answered = false;
   nextBtn.classList.remove('show');
   const q = DATA[order[current]];
-  topicEl.textContent = q.topic;
+  topicEl.textContent = q.from ? `${q.topic} · ${q.from}` : q.topic;
   buildProgress();
   scoreVal.textContent = score;
   qNum.textContent = current + 1;
