@@ -2406,6 +2406,180 @@ const EASY = [
 ];
 DATA.push(...EASY);
 
+// ---- questões sobre o que o professor falou em sala (ver README.md) ----
+const CLASS_TOPIC = "Falado em Aula";
+const CLASS_QS = [
+  {
+    question: "Uma tarefa curta e rápida foi dividida em várias threads, mas o programa ficou mais lento. Qual a explicação mais adequada?",
+    options: { A: "O custo de criar e gerenciar as threads superou o ganho obtido com a divisão da tarefa", B: "Threads só funcionam em processadores com Hyper-Threading habilitado", C: "O sistema operacional impede que tarefas curtas usem mais de uma thread", D: "Toda divisão de uma tarefa curta em threads provoca deadlock", E: "Threads só são escalonadas em modo não preemptivo, o que atrasa a execução" },
+    answer: "A",
+    explain: "Criar threads, registrá-las na tabela de controle (memória) e gerenciá-las tem custo. Em tarefas curtas, esse custo é maior que o ganho, e uma única linha de execução sai melhor."
+  },
+  {
+    question: "Segundo a definição dada em aula, o que diferencia um programa de um processo?",
+    options: { A: "Programa é a instância em execução; processo é o código guardado no disco", B: "Programa é o código armazenado em memória persistente; processo é uma instância desse programa em execução", C: "Programa e processo são sinônimos; o termo muda conforme o sistema operacional", D: "Processo é a menor unidade de execução que existe dentro de uma thread", E: "Programa é o código já carregado na RAM; processo é a cópia dele salva no disco" },
+    answer: "B",
+    explain: "O programa é o conjunto de código guardado no disco. O processo é uma instância desse programa carregada sobre o SO, registrada na tabela de processos e em execução."
+  },
+  {
+    question: "Ao abrir várias janelas do Bloco de Notas ao mesmo tempo, o que acontece do ponto de vista do sistema operacional?",
+    options: { A: "É criado um único processo, e as janelas são apenas abas dele", B: "O programa é copiado várias vezes para o disco", C: "São criados vários processos, cada um uma instância do mesmo programa, registrados na tabela de processos", D: "O SO bloqueia as novas instâncias até a primeira ser encerrada", E: "Cada janela vira uma thread da JVM" },
+    answer: "C",
+    explain: "Um mesmo programa pode ter várias instâncias. Cada janela aberta é um processo diferente do mesmo programa."
+  },
+  {
+    question: "Um processo aguarda a leitura de um arquivo no disco e, enquanto isso, não pode usar a CPU. Em qual estado ele está?",
+    options: { A: "Pronto", B: "Em execução", C: "Encerrado", D: "Bloqueado", E: "Novo" },
+    answer: "D",
+    explain: "O processo fica bloqueado quando aguarda um recurso (do SO, de E/S etc.) e não pode executar até recebê-lo."
+  },
+  {
+    question: "Um processo tem tudo de que precisa para executar e só aguarda a CPU ficar livre. Em qual estado ele está?",
+    options: { A: "Bloqueado", B: "Em execução", C: "Terminado", D: "Aguardando recurso de E/S", E: "Pronto" },
+    answer: "E",
+    explain: "Pronto: o processo está disponível para executar e só espera a sua vez de usar o processador."
+  },
+  {
+    question: "No escalonamento preemptivo, o que acontece quando um processo esgota a sua fatia de tempo (quantum)?",
+    options: { A: "Ele continua executando até concluir a tarefa", B: "Ele é encerrado e precisa ser reiniciado pelo usuário", C: "Ele é interrompido, o seu estado é salvo na memória e a CPU é entregue a outro processo", D: "Ele entra em deadlock até receber uma nova fatia de tempo", E: "Ele passa a ter a maior prioridade do sistema" },
+    answer: "C",
+    explain: "Quando o tempo acaba, o processo é interrompido mesmo sem ter terminado: o estado dele é salvo e outro processo recebe a CPU."
+  },
+  {
+    question: "Por que o usuário não percebe que os processos estão se revezando no processador?",
+    options: { A: "Porque cada processo roda em um computador diferente", B: "Porque a troca entre os processos é muito rápida e parece execução simultânea", C: "Porque o SO executa apenas um programa por vez e esconde os demais", D: "Porque o Hyper-Threading elimina a necessidade de revezamento", E: "Porque processos bloqueados não aparecem no Gerenciador de Tarefas" },
+    answer: "B",
+    explain: "A troca de processos (fatias de tempo) acontece tão rápido que o usuário tem a impressão de que tudo roda ao mesmo tempo."
+  },
+  {
+    question: "Qual característica define o escalonamento NÃO preemptivo?",
+    options: { A: "O SO interrompe o processo ao fim de cada fatia de tempo", B: "O processo só deixa a CPU quando termina ou quando se bloqueia por conta própria", C: "Os processos sempre executam em paralelo, em núcleos diferentes", D: "A prioridade dos processos é recalculada a cada interrupção", E: "Cada processo recebe uma thread exclusiva da JVM" },
+    answer: "B",
+    explain: "No não preemptivo, o SO não tira a CPU do processo: ele sai só quando termina ou quando se bloqueia. No preemptivo, o SO interrompe ao fim do quantum."
+  },
+  {
+    question: "Como uma thread se relaciona com o processo?",
+    options: { A: "É uma cópia completa do processo, com memória própria e separada", B: "É o programa armazenado no disco antes de ser executado", C: "É um recurso físico do processador, como o Hyper-Threading", D: "É a menor unidade de execução, e um processo pode ter várias threads", E: "É a tabela em que o SO registra os processos em execução" },
+    answer: "D",
+    explain: "A thread é a menor unidade de execução. Um processo pode ter várias threads trabalhando dentro dele."
+  },
+  {
+    question: "Qual é a diferença entre execução concorrente e execução paralela?",
+    options: { A: "Concorrente: as tarefas se alternam no mesmo processador ao longo do tempo; paralela: executam ao mesmo tempo em núcleos/processadores diferentes", B: "Concorrente: executa em vários núcleos ao mesmo tempo; paralela: alterna as tarefas em um único núcleo", C: "São sinônimos e descrevem a mesma forma de execução", D: "Concorrente só existe em SDs; paralela só existe em computadores pessoais", E: "Paralela dispensa sincronização, pois as tarefas nunca compartilham recursos" },
+    answer: "A",
+    explain: "Na concorrência, as tarefas disputam o mesmo processador ao longo do tempo. No paralelismo, elas executam de fato ao mesmo tempo em unidades diferentes."
+  },
+  {
+    question: "Sobre o Hyper-Threading, é correto afirmar que:",
+    options: { A: "É uma classe Java usada para criar threads secundárias", B: "É uma técnica de programação para evitar deadlock", C: "É um recurso do chip do processador (hardware), e não um recurso de programação", D: "É o nome do escalonador não preemptivo do Windows", E: "É a interface que define o contrato de uma thread em Java" },
+    answer: "C",
+    explain: "O professor destacou essa confusão comum: Hyper-Threading é um recurso do processador (hardware), não de programação."
+  },
+  {
+    question: "Como a JVM se relaciona com o sistema operacional e com as threads?",
+    options: { A: "A JVM substitui o sistema operacional e gerencia o hardware diretamente", B: "A JVM é um processo que roda sobre o SO e gerencia um conjunto de threads", C: "A JVM é uma thread que roda dentro do processo do navegador", D: "A JVM é um recurso de hardware do processador", E: "A JVM executa um único fluxo e não permite threads secundárias" },
+    answer: "B",
+    explain: "A JVM é um processo em cima do SO que gerencia um conjunto de threads (a principal e as secundárias)."
+  },
+  {
+    question: "Quais são as duas formas de criar uma thread em Java citadas em aula?",
+    options: { A: "Herdar da classe Thread (extends Thread) ou implementar a interface Runnable (implements Runnable)", B: "Instanciar um Vector ou um ReentrantLock", C: "Abrir o Gerenciador de Tarefas ou criar um novo processo no SO", D: "Herdar da interface Runnable ou implementar a classe Thread", E: "Marcar o método com synchronized ou declarar a variável como volatile" },
+    answer: "A",
+    explain: "Por herança (extends Thread) ou por interface/contrato (implements Runnable)."
+  },
+  {
+    question: "O que caracteriza uma condição de corrida (race condition)?",
+    options: { A: "Duas threads ficam esperando uma pela outra para sempre", B: "Um processo esgota a fatia de tempo e é interrompido pelo SO", C: "Uma thread aguarda um recurso por um tempo máximo definido", D: "O resultado depende da ordem em que as threads acessam um recurso compartilhado sem controle, e pode ficar inconsistente", E: "Um programa abre várias instâncias de si mesmo ao mesmo tempo" },
+    answer: "D",
+    explain: "Na race condition, várias threads mexem no mesmo recurso sem sincronização, e o resultado varia conforme a ordem de execução. Esperar uma pela outra para sempre é deadlock."
+  },
+  {
+    question: "O que é a seção (região) crítica?",
+    options: { A: "A área de memória em que o SO guarda a tabela de processos", B: "O trecho de código que acessa um recurso compartilhado e deve ser executado por uma thread de cada vez", C: "A parte do processador reservada ao Hyper-Threading", D: "O estado em que a thread aguarda por um tempo determinado", E: "O momento em que todas as threads terminam a execução" },
+    answer: "B",
+    explain: "É o trecho que queremos proteger: só uma linha de execução por vez entra, lê e modifica. Quando várias tentam ao mesmo tempo, o SO decide quem entra."
+  },
+  {
+    question: "Sobre exclusão mútua e mutex, qual afirmação está correta?",
+    options: { A: "Mutex permite que várias threads alterem a mesma variável ao mesmo tempo", B: "Exclusão mútua é uma técnica para aumentar o paralelismo eliminando bloqueios", C: "Com mutex, é a aplicação, e não o SO, que define qual thread entra primeiro", D: "Exclusão mútua só se aplica a arquivos em disco, não a variáveis ou métodos", E: "Mutex e exclusão mútua são a mesma ideia: garantir que só uma thread por vez acesse o recurso" },
+    answer: "E",
+    explain: "Mutex é exclusão mútua: cada thread acessa o recurso (variável, método, objeto, arquivo) com exclusividade, uma de cada vez."
+  },
+  {
+    question: "Duas threads tentam modificar ao mesmo tempo o mesmo objeto Vector em Java. O que acontece?",
+    options: { A: "As duas modificam simultaneamente e o resultado fica inconsistente", B: "Ocorre um deadlock imediatamente", C: "Os métodos do Vector são sincronizados, então só uma thread por vez consegue acessá-lo", D: "O Java lança um erro porque Vector não pode ser usado com threads", E: "A JVM cria uma cópia separada do Vector para cada thread" },
+    answer: "C",
+    explain: "Vector é uma coleção antiga cujos métodos de acesso já são sincronizados, ou seja, ele já implementa exclusão mútua."
+  },
+  {
+    question: "Uma thread precisa de um arquivo que outra está usando, mas foi definido que ela esperará no máximo 5 minutos; se o arquivo não for liberado, ela segue uma alternativa. Em qual estado ela fica durante essa espera?",
+    options: { A: "NEW", B: "TERMINATED", C: "RUNNABLE", D: "TIMED_WAITING", E: "Pronto" },
+    answer: "D",
+    explain: "TIMED_WAITING é a espera com prazo. Assim a thread não fica a vida inteira aguardando um recurso que pode nunca ser liberado."
+  },
+  {
+    question: "Uma instância de Thread foi criada em Java, mas ainda não começou a executar. Em qual estado ela está?",
+    options: { A: "NEW", B: "RUNNABLE", C: "BLOCKED", D: "WAITING", E: "TERMINATED" },
+    answer: "A",
+    explain: "NEW é o estado logo após a criação da instância, antes de a thread começar a executar."
+  },
+  {
+    question: "Uma thread chegou a um bloco synchronized (seção crítica) que já está sendo usado por outra thread e ficou esperando a liberação. Em qual estado ela está?",
+    options: { A: "NEW", B: "TERMINATED", C: "BLOCKED", D: "TIMED_WAITING", E: "RUNNABLE" },
+    answer: "C",
+    explain: "BLOCKED: a thread tentou entrar na seção crítica, encontrou-a ocupada e ficou bloqueada até ela ser liberada."
+  },
+  {
+    question: "Para que serve o ReentrantLock em Java?",
+    options: { A: "Para criar threads por herança, no lugar de extends Thread", B: "É uma coleção sincronizada que substitui o Vector", C: "Para detectar e desfazer deadlocks automaticamente", D: "É uma segunda forma de sincronizar, além do synchronized, que dá mais controle sobre o acesso à seção crítica", E: "É o recurso de hardware que permite duas threads por núcleo" },
+    answer: "D",
+    explain: "O Lock/ReentrantLock permite mais controle: por exemplo, tentar entrar por um tempo limitado, avisar que a seção crítica está ocupada ou notificar as outras threads quando ela é liberada."
+  },
+  {
+    question: "A thread X está com o recurso A e precisa do B; a thread Y está com o recurso B e precisa do A. Nenhuma libera o que tem. Que situação é essa?",
+    options: { A: "Race condition", B: "Preempção", C: "Deadlock (espera circular)", D: "Hyper-Threading", E: "Timed waiting" },
+    answer: "C",
+    explain: "Uma thread espera pela outra em espera circular: é o deadlock, que causa aqueles travamentos em que o programa não responde."
+  },
+  {
+    question: "Por que o deadlock é considerado um dos problemas mais sérios da programação concorrente?",
+    options: { A: "Porque sempre acontece na primeira execução e é fácil de reproduzir", B: "Porque só ocorre em processadores sem Hyper-Threading", C: "Porque o sistema operacional resolve sozinho todos os casos", D: "Porque só ocorre em programas com uma única thread", E: "Porque não dá para saber se vai acontecer: o programa pode rodar bem 50 vezes e travar na seguinte" },
+    answer: "E",
+    explain: "O deadlock é imprevisível. O SO tem só controles pontuais, e o travamento muitas vezes não tem explicação aparente."
+  },
+  {
+    question: "O que propõe o algoritmo do avestruz (Tanenbaum)?",
+    options: { A: "Encerrar todas as threads periodicamente para evitar travamentos", B: "Ignorar o deadlock quando ele é raro e o custo de controlá-lo é maior que o prejuízo que ele causaria", C: "Definir uma ordem fixa para a aquisição de todos os recursos", D: "Usar apenas coleções sincronizadas, como o Vector", E: "Dar prioridade máxima à thread que está esperando há mais tempo" },
+    answer: "B",
+    explain: "Como o avestruz que 'enterra a cabeça na areia': se o problema é raro e o controle custa mais (e deixa o programa pesado), ignora-se o deadlock."
+  },
+  {
+    question: "Em qual situação o algoritmo do avestruz NÃO é adequado?",
+    options: { A: "Em um sistema crítico, como o software de um braço robótico que faz cirurgia a distância", B: "Em um programa em que o deadlock é raríssimo e só exige reiniciar a aplicação", C: "Quando o custo de controlar o deadlock é maior que o prejuízo que ele causaria", D: "Em um editor de texto simples usado ocasionalmente", E: "Quando o deadlock acontece, em média, uma vez a cada seis meses sem causar danos" },
+    answer: "A",
+    explain: "Em aplicações críticas, um travamento pode machucar alguém. A programação tem que ser segura o bastante para o mecanismo não executar um movimento perigoso."
+  },
+  {
+    question: "No problema do jantar dos filósofos, o que representam os filósofos e os garfos?",
+    options: { A: "Filósofo = recurso compartilhado; garfo = thread", B: "Filósofo = núcleo do processador; garfo = processo", C: "Filósofo = thread; garfo = recurso compartilhado (variável, método, objeto)", D: "Filósofo = sistema operacional; garfo = escalonador", E: "Filósofo = JVM; garfo = Vector" },
+    answer: "C",
+    explain: "Cada filósofo é uma thread, e cada garfo é um recurso que ela precisa adquirir."
+  },
+  {
+    question: "No jantar dos filósofos (5 filósofos, 5 garfos, 2 garfos para comer), o que acontece se todos pegarem o garfo da direita ao mesmo tempo?",
+    options: { A: "Todos comem em sequência, sem nenhum problema", B: "Todos ficam esperando o garfo da esquerda, que está com o vizinho: espera circular (deadlock)", C: "Ocorre apenas uma race condition, e um deles come duas vezes", D: "O SO libera um garfo extra automaticamente", E: "Metade dos filósofos come e a outra metade desiste" },
+    answer: "B",
+    explain: "Cada um segura um garfo e espera o outro, que está ocupado. Ninguém libera nada: é o impasse (deadlock)."
+  },
+  {
+    question: "Qual destas é uma das formas citadas em aula para tratar o deadlock no jantar dos filósofos?",
+    options: { A: "Fazer todos os filósofos pegarem primeiro o garfo da direita", B: "Trocar o escalonador do SO para não preemptivo", C: "Ativar o Hyper-Threading no processador", D: "Controlar a ordem em que os recursos (garfos) são adquiridos", E: "Aumentar indefinidamente a prioridade de um dos filósofos" },
+    answer: "D",
+    explain: "As formas citadas foram o algoritmo do avestruz, controlar a ordem de aquisição dos recursos e a espera com tempo limite (se esgotar, o filósofo libera o garfo)."
+  }
+].map(q => ({ topic: CLASS_TOPIC, ...q }));
+DATA.push(...CLASS_QS);
+
 
 // ---- estado ----
 let order = [];      // ordem embaralhada das perguntas (indices em DATA)
@@ -2549,7 +2723,8 @@ function renderStart(){
     const paint = () => {
       const on = selectedTopics.has(t);
       li.className = 'opt' + (on ? ' selected' : '');
-      const note = t === EASY_TOPIC ? ' <small>(conteúdos misturados · repete questões dos outros temas)</small>' : '';
+      const note = t === EASY_TOPIC ? ' <small>(conteúdos misturados · repete questões dos outros temas)</small>'
+        : t === CLASS_TOPIC ? ' <small>(o que o professor disse em sala que pode cair)</small>' : '';
       li.innerHTML = `<span class="k">${on ? '■' : '□'}</span><span>${t}${note}</span><span class="count">${n} questões</span>`;
     };
     paint();
